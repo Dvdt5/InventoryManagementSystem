@@ -1,12 +1,17 @@
 using InventoryManagementSystem.Models;
+using InventoryManagementSystem.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped(typeof(GenericRepository<>));
 
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {

@@ -9,6 +9,7 @@ namespace InventoryManagementSystem.Mapping
         public MapProfile()
         {
             CreateMap<Product, ProductModel>().ReverseMap();
+            CreateMap<Category, CategoryModel>().ReverseMap();
         }
     }
 }

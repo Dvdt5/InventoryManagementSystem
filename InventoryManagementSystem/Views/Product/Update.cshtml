@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Update Product";
+}
+@model ProductModel
+
+<div class="container mt-5">
+    <h2>Update Product</h2>
+    <form asp-controller="Product" asp-action="Update" method="post">
+        <!-- Name -->
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input type="text" id="productName" class="form-control" asp-for="Name" required>
+        </div>
+
+        <!-- Description (optional) -->
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description (optional)</label>
+            <textarea class="form-control" asp-for="Description" id="productDescription" rows="3"></textarea>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Price ($)</label>
+            <input type="number" class="form-control" asp-for="Price" id="productPrice" min="0" step="0.01" required>
+        </div>
+
+        <!-- Stock Quantity -->
+        <div class="mb-3">
+            <label asp-for="StockQuantity" class="form-label">Stock Quantity</label>
+            <input type="number" class="form-control" asp-for="StockQuantity" id="stockQuantity" min="0" required>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+            <label asp-for="CategoryId" class="form-label">Category</label>
+            <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.Categories" id="productCategory" required>
+                <option value="" selected disabled>Choose a category</option>
+
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

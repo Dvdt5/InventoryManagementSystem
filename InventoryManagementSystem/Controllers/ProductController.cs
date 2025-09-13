@@ -54,9 +54,37 @@ namespace InventoryManagementSystem.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Update(int id)
+        public async Task<IActionResult> Update(int id)
         {
-            return View();
+            var product = await _productRepository.GetByIdAsync(id);
+            var productModel = _mapper.Map<ProductModel>(product);
+
+
+            var categories = await _categoryRepository.GetAllAsync();
+            var categoryModels = _mapper.Map<List<CategoryModel>>(categories);
+            var categoriesSelectList = categoryModels.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            });
+
+
+            ViewBag.Categories = categoriesSelectList;
+            return View(productModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(ProductModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            
+            model.Updated = DateTime.Now;
+            var product = _mapper.Map<Product>(model);
+            await _productRepository.UpdateAsync(product);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)

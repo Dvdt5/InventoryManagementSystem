@@ -24,6 +24,7 @@ namespace InventoryManagementSystem.Controllers
         {
             var products = await _productRepository.GetAllAsync();
             var productModels = _mapper.Map<List<ProductModel>>(products);
+
             return View(productModels);
         }
 
@@ -87,9 +88,19 @@ namespace InventoryManagementSystem.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var product = await _productRepository.GetByIdAsync(id);
+            var productModel = _mapper.Map<ProductModel>(product);
+
+            return View(productModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(ProductModel model)
+        {
+            await _productRepository.DeleteAsync(model.Id);
+            return RedirectToAction("Index");
         }
     }
 }

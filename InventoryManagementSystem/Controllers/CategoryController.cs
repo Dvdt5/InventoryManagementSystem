@@ -43,14 +43,42 @@ namespace InventoryManagementSystem.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Update(int id)
+        public async Task<IActionResult> Update(int id)
         {
-            return View();
+            var category = await _categoryRepository.GetByIdAsync(id);
+            var categoryModel = _mapper.Map<CategoryModel>(category);
+
+            return View(categoryModel);
         }
 
-        public IActionResult Delete(int id)
+        [HttpPost]
+        public async Task<IActionResult> Update(CategoryModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            model.Updated = DateTime.Now;
+
+            var category = _mapper.Map<Category>(model);
+            await _categoryRepository.UpdateAsync(category);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var category = await _categoryRepository.GetByIdAsync(id);
+            var categoryModel = _mapper.Map<CategoryModel>(category);
+
+            return View(categoryModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(CategoryModel model)
+        {
+            await _categoryRepository.DeleteAsync(model.Id);
+            return RedirectToAction("Index");
         }
     }
 }

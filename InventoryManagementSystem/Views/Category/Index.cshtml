@@ -7,6 +7,7 @@
 
 
 <div class="table-responsive px-3">
+    <a class="btn btn-primary mb-3" asp-action="Add">Add Category</a>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
@@ -14,6 +15,7 @@
                 <th>Name</th>
                 <th>Created</th>
                 <th>Updated</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +26,10 @@
                     <td>@item.Name</td>
                     <td>@item.Created</td>
                     <td>@item.Updated</td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
                 </tr>
             }
         </tbody>

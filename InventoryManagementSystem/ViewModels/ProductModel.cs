@@ -16,7 +16,7 @@ namespace InventoryManagementSystem.ViewModels
         [Required(ErrorMessage = "Stock Quantity is required")]
         public int StockQuantity { get; set; }
         public int? CategoryId { get; set; }
-        public Category? Category { get; set; }
+        public string? CategoryName { get; set; }
 
     }
 }

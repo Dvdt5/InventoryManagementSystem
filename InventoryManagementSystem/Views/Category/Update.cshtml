@@ -1,15 +1,16 @@
 ﻿
 @{
-    ViewData["Title"] = "Add Category";
+    ViewData["Title"] = "Update Category";
 }
+
 
 @model CategoryModel
 
 <div class="container mt-5">
-    <h2>Add New Category</h2>
-    <form asp-controller="Category" asp-action="Add" method="post">
+    <h2>Update Category</h2>
+    <form asp-controller="Category" asp-action="Update" method="post">
         <!-- Name -->
-        <div class="mb-3 col-6">
+        <div class="mb-3">
             <label asp-for="Name" class="form-label">Name</label>
             <input type="text" id="categoryName" class="form-control" asp-for="Name" required>
         </div>
@@ -19,4 +20,6 @@
         <a class="btn btn-danger" asp-action="Index">Cancel</a>
     </form>
 </div>
+
+
 

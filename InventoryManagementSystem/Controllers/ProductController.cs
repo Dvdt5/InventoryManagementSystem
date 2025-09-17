@@ -25,6 +25,15 @@ namespace InventoryManagementSystem.Controllers
             var products = await _productRepository.GetAllAsync();
             var productModels = _mapper.Map<List<ProductModel>>(products);
 
+            foreach(var productModel in productModels)
+            {
+                if (productModel.CategoryId.HasValue)
+                {
+                    var category = await _categoryRepository.GetByIdAsync(productModel.CategoryId.Value);
+                    productModel.CategoryName = category?.Name;
+                }
+            }
+
             return View(productModels);
         }
 

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Delete Measure";
+}
+
+@model UnitOfMeasureModel
+
+<div class="card border-danger">
+    <div class="card-header bg-danger text-white">
+        Deleting Unit Of Measure
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Are you sure you want to delete this unit of measure?</h5>
+        <dl class="row">
+            <dt class="col-sm-3">Name</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-3">Abbreviation</dt>
+            <dd class="col-sm-9">@Model.Abbreviation</dd>
+        </dl>
+
+        <form asp-controller="UnitOfMeasure" asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+<h1>Delete</h1>

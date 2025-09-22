@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Update Measure";
+}
+
+@model UnitOfMeasureModel
+
+<div class="container mt-5">
+    <h2>Add New Measure</h2>
+    <form asp-controller="UnitOfMeasure" asp-action="Update" method="post">
+        <!-- Name -->
+        <div class="mb-3 col-6">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input type="text" id="MeasureName" class="form-control" asp-for="Name" required>
+        </div>
+
+        <!-- Abb -->
+        <div class="mb-3 col-6">
+            <label asp-for="Abbreviation" class="form-label">Abbreviation</label>
+            <input type="text" id="MeasureAbbreviation" class="form-control" asp-for="Abbreviation" maxlength="6" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-danger" asp-action="Index">Cancel</a>
+    </form>
+</div>
+

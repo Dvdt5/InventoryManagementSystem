@@ -32,6 +32,7 @@ namespace InventoryManagementSystem.Controllers
                     var category = await _categoryRepository.GetByIdAsync(productModel.CategoryId.Value);
                     productModel.CategoryName = category?.Name;
                 }
+
             }
 
             return View(productModels);

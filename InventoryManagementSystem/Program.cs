@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<UnitOfMeasureRepository>();
 builder.Services.AddScoped(typeof(GenericRepository<>));
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

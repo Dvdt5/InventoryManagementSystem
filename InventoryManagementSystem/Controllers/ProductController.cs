@@ -11,13 +11,15 @@ namespace InventoryManagementSystem.Controllers
     {
         private readonly ProductRepository _productRepository;
         private readonly CategoryRepository _categoryRepository;
+        private readonly UnitOfMeasureRepository _unitOfMeasureRepository;
         private readonly IMapper _mapper;
 
-        public ProductController(ProductRepository productRepository, IMapper mapper, CategoryRepository categoryRepository)
+        public ProductController(ProductRepository productRepository, IMapper mapper, CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository)
         {
             _productRepository = productRepository;
             _mapper = mapper;
             _categoryRepository = categoryRepository;
+            _unitOfMeasureRepository = unitOfMeasureRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -33,6 +35,12 @@ namespace InventoryManagementSystem.Controllers
                     productModel.CategoryName = category?.Name;
                 }
 
+                //if (productModel.UnitOfMeasureId.HasValue)
+                //{
+                    //var unitOfMeasure = await _unitOfMeasureRepository.GetByIdAsync(productModel.UnitOfMeasureId.Value);
+                  //  productModel.UnitOfMeasureName = unitOfMeasure?.Name;
+                //}
+
             }
 
             return View(productModels);
@@ -42,11 +50,22 @@ namespace InventoryManagementSystem.Controllers
         {
             var categories = await _categoryRepository.GetAllAsync();
             var categoryModels = _mapper.Map<List<CategoryModel>>(categories);
+
+            var unitsOfMeasure = await _unitOfMeasureRepository.GetAllAsync();
+            var unitOfMeasureModels = _mapper.Map<List<UnitOfMeasureModel>>(unitsOfMeasure);
+
             var categoriesSelectList = categoryModels.Select(x => new SelectListItem()
             {
                 Text = x.Name,
                 Value = x.Id.ToString()
             });
+
+            var unitsOfMeasureSelectList = unitOfMeasureModels.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            });
+
             ViewBag.Categories = categoriesSelectList;
             return View();
         }

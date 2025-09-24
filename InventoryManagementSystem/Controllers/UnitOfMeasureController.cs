@@ -75,6 +75,7 @@ namespace InventoryManagementSystem.Controllers
             return View(unitModel);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(UnitOfMeasureModel unitModel)
         {
             await _unitOfMeasureRepository.DeleteAsync(unitModel.Id);

@@ -13,6 +13,11 @@
             <input type="text" id="productName" class="form-control" asp-for="Name" required>
         </div>
 
+        <div class="mb-3">
+            <label asp-for="SKU" class="form-label">SKU</label>
+            <input type="text" id="productSKU" class="form-control" asp-for="SKU" required>
+        </div>
+
         <!-- Description (optional) -->
         <div class="mb-3">
             <label asp-for="Description" class="form-label">Description (optional)</label>
@@ -31,12 +36,21 @@
             <input type="number" class="form-control" asp-for="ReorderLevel" id="stockQuantity" min="0" required>
         </div>
 
+        <!-- UnitOfMeasure -->
+        <div class="mb-3">
+            <label asp-for="UnitOfMeasureId" class="form-label">UnitOfMeasure</label>
+            <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.UnitOfMeasures" id="productUnitOfMeasure" required>
+                <option value="" selected disabled>Choose a Unit Of Measure</option>
+                
+            </select>
+        </div>
+
         <!-- Category -->
         <div class="mb-3">
             <label asp-for="CategoryId" class="form-label">Category</label>
-            <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.Categories" id="productCategory"  required>
+            <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.Categories" id="productCategory" required>
                 <option value="" selected disabled>Choose a category</option>
-                
+
             </select>
         </div>
 

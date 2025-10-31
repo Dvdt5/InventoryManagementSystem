@@ -11,6 +11,7 @@ namespace InventoryManagementSystem.Mapping
             CreateMap<Product, ProductModel>().ReverseMap();
             CreateMap<Category, CategoryModel>().ReverseMap();
             CreateMap<UnitOfMeasure, UnitOfMeasureModel>().ReverseMap();
+            CreateMap<Warehouse, WarehouseModel>().ReverseMap();
         }
     }
 }

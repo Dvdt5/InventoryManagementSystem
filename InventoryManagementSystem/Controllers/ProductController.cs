@@ -35,11 +35,11 @@ namespace InventoryManagementSystem.Controllers
                     productModel.CategoryName = category?.Name;
                 }
 
-                //if (productModel.UnitOfMeasureId.HasValue)
-                //{
-                    //var unitOfMeasure = await _unitOfMeasureRepository.GetByIdAsync(productModel.UnitOfMeasureId.Value);
-                  //  productModel.UnitOfMeasureName = unitOfMeasure?.Name;
-                //}
+                if (productModel.UnitOfMeasureId.HasValue)
+                {
+                    var unitOfMeasure = await _unitOfMeasureRepository.GetByIdAsync(productModel.UnitOfMeasureId.Value);
+                    productModel.UnitOfMeasureName = unitOfMeasure?.Name;
+                }
 
             }
 
@@ -67,6 +67,7 @@ namespace InventoryManagementSystem.Controllers
             });
 
             ViewBag.Categories = categoriesSelectList;
+            ViewBag.UnitsOfMeasure = unitsOfMeasureSelectList;
             return View();
         }
 

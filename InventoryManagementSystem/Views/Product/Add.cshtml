@@ -7,51 +7,58 @@
 <div class="container mt-5">
     <h2>Add New Product</h2>
     <form asp-controller="Product" asp-action="Add" method="post">
-        <!-- Name -->
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label">Name</label>
-            <input type="text" id="productName" class="form-control" asp-for="Name" required>
-        </div>
+        <div class="mb-3 col-12 row">
+            <!-- Name -->
+            <div class="mb-3 col-6">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input type="text" id="productName" class="form-control" asp-for="Name" required>
+            </div>
 
-        <div class="mb-3">
-            <label asp-for="SKU" class="form-label">SKU</label>
-            <input type="text" id="productSKU" class="form-control" asp-for="SKU" required>
+            <div class="mb-3 col-6">
+                <label asp-for="SKU" class="form-label">SKU</label>
+                <input type="text" id="productSKU" class="form-control" asp-for="SKU" required>
+            </div>
         </div>
 
         <!-- Description (optional) -->
-        <div class="mb-3">
+        <div class="mb-3 col-12 row d-flex justify-content-center">
             <label asp-for="Description" class="form-label">Description (optional)</label>
             <textarea class="form-control" asp-for="Description" id="productDescription"  rows="3"></textarea>
         </div>
 
-        <!-- Price -->
-        <div class="mb-3">
-            <label asp-for="Price" class="form-label">Price ($)</label>
-            <input type="number" class="form-control" asp-for="Price" id="productPrice"  min="0" step="0.01" required>
+        <div class="mb-3 col-12 row">
+
+            <!-- Price -->
+            <div class="mb-3 col-6">
+                <label asp-for="Price" class="form-label">Price ($)</label>
+                <input type="number" class="form-control" asp-for="Price" id="productPrice"  min="0" step="0.01" required>
+            </div>
+
+            <!-- Minimal amount to order -->
+            <div class="mb-3 col-6">
+                <label asp-for="ReorderLevel" class="form-label">ReorderLevel</label>
+                <input type="number" class="form-control" asp-for="ReorderLevel" id="stockQuantity" min="0" required>
+            </div>
         </div>
 
-        <!-- Stock Quantity -->
-        <div class="mb-3">
-            <label asp-for="ReorderLevel" class="form-label">ReorderLevel</label>
-            <input type="number" class="form-control" asp-for="ReorderLevel" id="stockQuantity" min="0" required>
-        </div>
-
-        <!-- UnitOfMeasure -->
-        <div class="mb-3">
-            <label asp-for="UnitOfMeasureId" class="form-label">UnitOfMeasure</label>
-            <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.UnitOfMeasures" id="productUnitOfMeasure" required>
-                <option value="" selected disabled>Choose a Unit Of Measure</option>
+        <div class="mb-3 col-12 row">
+            <!-- UnitOfMeasure -->
+            <div class="mb-3 col-6">
+                <label asp-for="UnitOfMeasureId" class="form-label">UnitOfMeasure</label>
+                <select class="form-control" asp-for="UnitOfMeasureId" asp-items="@ViewBag.UnitsOfMeasure" id="productUnitOfMeasure" required>
+                    <option value="" selected disabled>Choose a Unit Of Measure</option>
                 
-            </select>
-        </div>
+                </select>
+            </div>
 
-        <!-- Category -->
-        <div class="mb-3">
-            <label asp-for="CategoryId" class="form-label">Category</label>
-            <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.Categories" id="productCategory" required>
-                <option value="" selected disabled>Choose a category</option>
+            <!-- Category -->
+            <div class="mb-3 col-6">
+                <label asp-for="CategoryId" class="form-label">Category</label>
+                <select class="form-control" asp-for="CategoryId" asp-items="@ViewBag.Categories" id="productCategory" required>
+                    <option value="" selected disabled>Choose a category</option>
 
-            </select>
+                </select>
+            </div>
         </div>
 
         <!-- Submit Button -->

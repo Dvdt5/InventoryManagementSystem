@@ -8,6 +8,7 @@ namespace InventoryManagementSystem.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<UnitOfMeasure> UnitsOfMeasures { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options)
         {

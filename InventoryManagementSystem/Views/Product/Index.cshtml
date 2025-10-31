@@ -17,6 +17,7 @@
                     <th>Price</th>
                     <th>ReorderLevel</th>
                     <th>Category</th>
+                    <th>Unit Of Measure</th>
                     <th></th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                         <td>@item.Price</td>
                         <td>@item.ReorderLevel</td>
                         <td>@item.CategoryName</td>
+					    <td>@item.UnitOfMeasureName</td>
                         <td>
                             <a class="btn btn-warning" asp-action="Update" asp-route-id="@item.Id">Update</a>
                             <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>

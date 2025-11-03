@@ -64,5 +64,19 @@ namespace InventoryManagementSystem.Controllers
             await _warehouseRepository.UpdateAsync(warehouse);
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var warehouse = await _warehouseRepository.GetByIdAsync(id);
+            var warehouseModel = _mapper.Map<WarehouseModel>(warehouse);
+            return View(warehouseModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(WarehouseModel warehouseModel)
+        {
+            await _warehouseRepository.DeleteAsync(warehouseModel.Id);
+            return RedirectToAction("Index");
+        }
     }
 }

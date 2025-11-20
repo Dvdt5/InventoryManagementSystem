@@ -6,7 +6,7 @@ namespace InventoryManagementSystem.ViewModels
     {
         public int ProductId { get; set; }
         public int WarehouseId { get; set; }
-        public int QueantityOnHand { get; set; }
+        public int QuantityOnHand { get; set; }
         public int QuantityReserved { get; set; }
         public string LastUpdated { get; set; }
     }

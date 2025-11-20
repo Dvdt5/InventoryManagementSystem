@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Add Inventory Stock";
+}
+
+@model InventoryStockModel
+
+<div class="container mt-5">
+    <h2>Add Inventory Stock</h2>
+    <form asp-controller="InventoryStock" asp-action="Add" method="post">
+
+
+
+        <div class="mb-3 col-12 row">
+
+            <!-- Quantity On Hand -->
+            <div class="mb-3 col-6">
+                <label asp-for="QuantityOnHand" class="form-label">Quantity On Hand</label>
+                <input type="number" class="form-control" asp-for="QuantityOnHand" id="QuantityOnHand" min="0" step="0.01" required>
+            </div>
+
+            <!-- Quantity Reserved -->
+            <div class="mb-3 col-6">
+                <label asp-for="QuantityReserved" class="form-label">Quantity Reserved</label>
+                <input type="number" class="form-control" asp-for="QuantityReserved" id="QuantityReserved" min="0" required>
+            </div>
+        </div>
+
+        <div class="mb-3 col-12 row">
+            <!-- Product -->
+            <div class="mb-3 col-6">
+                <label asp-for="ProductId" class="form-label">Product</label>
+                <select class="form-control" asp-for="ProductId" asp-items="@ViewBag.Products" id="product" required>
+                    <option value="" selected disabled>Choose a Product</option>
+
+                </select>
+            </div>
+
+            <!-- Warehouse -->
+            <div class="mb-3 col-6">
+                <label asp-for="WarehouseId" class="form-label">Warehouse</label>
+                <select class="form-control" asp-for="WarehouseId" asp-items="@ViewBag.Warehouse" id="warehouse" required>
+                    <option value="" selected disabled>Choose a Warehouse</option>
+
+                </select>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <a class="btn btn-danger" asp-action="Index">Cancel</a>
+    </form>
+</div>
+

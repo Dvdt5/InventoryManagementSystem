@@ -13,6 +13,7 @@ builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<UnitOfMeasureRepository>();
 builder.Services.AddScoped<WarehouseRepository>();
 builder.Services.AddScoped<InventoryStockRepository>();
+builder.Services.AddScoped<InventoryTransactionRepository>();
 builder.Services.AddScoped(typeof(GenericRepository<>));
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

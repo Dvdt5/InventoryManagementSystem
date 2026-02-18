@@ -2,7 +2,7 @@
 
 namespace InventoryManagementSystem.ViewModels
 {
-    public class InventoryStockModel : BaseModel
+    public class InventoryStockModel : Base
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

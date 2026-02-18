@@ -1,6 +1,6 @@
 ﻿namespace InventoryManagementSystem.ViewModels
 {
-    public class BaseModel
+    public class Base
     {
         public int Id { get; set; }
         public DateTime Created { get; set; }

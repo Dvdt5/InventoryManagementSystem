@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagementSystem.ViewModels
 {
-    public class ProductModel : BaseModel
+    public class ProductModel : Base
     {
         [Required(ErrorMessage="Name is required")]
         public string Name { get; set; }

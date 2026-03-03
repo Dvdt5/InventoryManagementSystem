@@ -65,9 +65,34 @@ namespace InventoryManagementSystem.Controllers
             inventoryTransactionModel.Created = DateTime.Now;
             inventoryTransactionModel.Updated = DateTime.Now;
 
+            var transactionTypeShort = "";
+
+            switch (inventoryTransactionModel.TransactionType)
+            {
+                case "Inbound":
+                    transactionTypeShort = "PO";
+                    break;
+
+                case "Outbound":
+                    transactionTypeShort = "SO";
+                    break;
+
+                case "Adjustment":
+                    transactionTypeShort = "ADJ";
+                    break;
+            }
+
+            
+            
+
             var inventoryTransaction = _mapper.Map<InventoryTransaction>(inventoryTransactionModel);
 
             await _InventoryTransactionRepository.AddAsync(inventoryTransaction);
+
+            inventoryTransaction.ReferenceNumber = $"{transactionTypeShort}-{DateTime.UtcNow.Year}-{inventoryTransaction.Id:D6}";
+
+            await _InventoryTransactionRepository.SaveChangesCustomAsync(inventoryTransaction.Id);
+
 
             return RedirectToAction("Index");
         }

@@ -46,6 +46,11 @@ namespace InventoryManagementSystem.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task SaveChangesCustomAsync(int id)
+        {
+            await _context.SaveChangesAsync();
+        }
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
             return _dbSet.Where(expression);

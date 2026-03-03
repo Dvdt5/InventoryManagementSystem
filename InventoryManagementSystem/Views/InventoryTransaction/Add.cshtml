@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Add Transaction";
+}
+
+@model InventoryTransactionModel
+
+<div class="container mt-5">
+    <h2>Add New Transaction</h2>
+    <form asp-controller="InventoryTransaction" asp-action="Add" method="post">
+        <div class="mb-3 col-12 row">
+            
+            <div class="mb-3 col-6">
+                <label asp-for="TransactionType" class="form-label">Transaction Type</label>
+                <select class="form-control" asp-for="TransactionType"  id="transactionType" required>
+                    <option value="" selected disabled>Choose a Tansaction Type</option>
+                    <option value="Inbound" >Inbound</option>
+                    <option value="Outbound" >Outbound</option>
+                    <option value="Adjustment" >Adjustment</option>
+
+                </select>
+            </div>
+
+            <div class="mb-3 col-6">
+                <label asp-for="TransactionDate" class="form-label">Transaction Date</label>
+                <input type="datetime" id="transactionDate" class="form-control" asp-for="TransactionDate" required>
+            </div>
+        </div>
+
+        
+        <div class="mb-3 col-12 row d-flex justify-content-center">
+            <label asp-for="Remarks" class="form-label">Remarks (Optional)</label>
+            <textarea class="form-control" asp-for="Remarks" id="transactionRemarks" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3 col-12 row">
+
+            <!-- Price -->
+            <div class="mb-3 col-6">
+                <label asp-for="Quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" asp-for="Quantity" id="transactionQuantity" min="0" step="0.01" required>
+            </div>
+
+           
+            
+        </div>
+
+        <div class="mb-3 col-12 row">
+            <!-- Products -->
+            <div class="mb-3 col-6">
+                <label asp-for="ProductId" class="form-label">Product</label>
+                <select class="form-control" asp-for="ProductId" asp-items="@ViewBag.Products" id="transactionProduct" required>
+                    <option value="" selected disabled>Choose a Product</option>
+
+                </select>
+            </div>
+
+            <!-- Category -->
+            <div class="mb-3 col-6">
+                <label asp-for="WarehouseId" class="form-label">Warehouse</label>
+                <select class="form-control" asp-for="WarehouseId" asp-items="@ViewBag.Warehouses" id="transactionWarehouse" required>
+                    <option value="" selected disabled>Choose a Warehouse</option>
+
+                </select>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <a class="btn btn-danger" asp-action="Index">Cancel</a>
+    </form>
+</div>
+

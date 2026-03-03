@@ -11,8 +11,7 @@ namespace InventoryManagementSystem.ViewModels
         public string TransactionType { get; set; }
         public int Quantity { get; set; }
         public string TransactionDate { get; set; }
-        public string ReferenceNumber { get; set; }
-        public string Remarks { get; set; }
-        public string CreatedBy { get; set; }
+        public string? ReferenceNumber { get; set; }
+        public string? Remarks { get; set; }
     }
 }
